@@ -12,9 +12,10 @@ import ma.glasnost.orika.impl.generator.JavassistCompilerStrategy;
 import ma.glasnost.orika.metadata.ClassMapBuilder;
 import ma.glasnost.orika.unenhance.HibernateUnenhanceStrategy;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class OrikaBeanMapper extends ConfigurableMapper {
     private MapperFactory factory;
 
@@ -48,6 +49,14 @@ public class OrikaBeanMapper extends ConfigurableMapper {
     }
 
     //    convert entity => DTO / DTO => entity
+
+    public <T, U> T convertDTO(U from, Class<T> toClass){
+        if (from == null){
+            return null;
+        }
+        return map(from, toClass);
+    }
+
     public <T, U> List<T> convertListDTO(Iterable<U> from, Class<T> toClass) {
         if (from == null) {
             return null;
