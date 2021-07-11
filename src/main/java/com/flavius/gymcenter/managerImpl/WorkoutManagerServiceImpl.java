@@ -71,4 +71,18 @@ public class WorkoutManagerServiceImpl implements WorkoutManagerService {
         List<Workout> workouts = workoutDao.findAll();
         return orikaBeanMapper.convertListDTO(workouts, WorkoutDto.class);
     }
+
+    @Override
+    public List<WorkoutDto> findWorkoutsForSport(long idSport) {
+        Sport sport = sportDao.findById(idSport).orElse(null);
+        List<Workout> workouts = sport.getWorkouts();
+        return orikaBeanMapper.convertListDTO(workouts, WorkoutDto.class);
+    }
+
+    @Override
+    public List<WorkoutDto> findWorkoutsForGym(long idGym) {
+        Gym gym = gymDao.findById(idGym).orElse(null);
+        List<Workout> workouts = gym.getWorkouts();
+        return orikaBeanMapper.convertListDTO(workouts, WorkoutDto.class);
+    }
 }

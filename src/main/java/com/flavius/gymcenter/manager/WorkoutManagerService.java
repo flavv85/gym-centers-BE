@@ -11,4 +11,6 @@ public interface WorkoutManagerService {
     void addWorkoutForSport(long idWorkout, long idSport);
     void deleteWorkout(long id);
     List<WorkoutDto> findAllWorkouts();
+    List<WorkoutDto> findWorkoutsForSport(long idSport);
+    List<WorkoutDto> findWorkoutsForGym(long idGym);
 }
