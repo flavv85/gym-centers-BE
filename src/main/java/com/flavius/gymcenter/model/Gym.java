@@ -23,7 +23,7 @@ public class Gym {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")
     private List<Sport> sports;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")
+    @OneToMany(mappedBy = "gym")
     private List<Instructor> instructors;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")

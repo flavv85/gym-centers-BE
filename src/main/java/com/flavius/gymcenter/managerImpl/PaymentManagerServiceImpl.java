@@ -30,33 +30,33 @@ public class PaymentManagerServiceImpl implements PaymentManagerService {
     }
 
     @Override
-    public PaymentDto addPayment(PaymentDto paymentDto, long idCustomer) {
+    public PaymentDto addPayment(PaymentDto paymentDto, Long idCustomer) {
         Customer customer = customerDao.findById(idCustomer).orElse(null);
         Payment payment = orikaBeanMapper.map(paymentDto, Payment.class);
         return orikaBeanMapper.convertDTO(paymentService.addPayment(payment, customer), PaymentDto.class);
     }
 
     @Override
-    public PaymentDto editPayment(PaymentDto paymentDto, long id) {
+    public PaymentDto editPayment(PaymentDto paymentDto, Long id) {
         Payment payment = orikaBeanMapper.map(paymentDto, Payment.class);
         Payment existsPayment = paymentDao.findById(id).orElse(null);
         return orikaBeanMapper.convertDTO(paymentService.editPayment(payment, existsPayment), PaymentDto.class);
     }
 
     @Override
-    public PaymentDto findPaymentById(long id) {
+    public PaymentDto findPaymentById(Long id) {
         return orikaBeanMapper.convertDTO(paymentDao.findById(id).orElse(null), PaymentDto.class);
     }
 
     @Override
-    public List<PaymentDto> findPaymentForCustomer(long idCustomer) {
+    public List<PaymentDto> findPaymentForCustomer(Long idCustomer) {
         Customer customer = customerDao.findById(idCustomer).orElse(null);
         List<Payment> payments = customer.getPayments();
         return orikaBeanMapper.convertListDTO(payments, PaymentDto.class);
     }
 
     @Override
-    public void deletePayment(long id) {
+    public void deletePayment(Long id) {
         Payment existsPayment = paymentDao.findById(id).orElse(null);
         paymentDao.delete(existsPayment);
     }

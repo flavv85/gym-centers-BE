@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PaymentController {
 
     private final PaymentManagerService paymentManagerService;
@@ -18,27 +18,27 @@ public class PaymentController {
     }
 
     @GetMapping("/findPaymentById/{id}")
-    PaymentDto findPaymentById(@PathVariable long id) {
+    PaymentDto findPaymentById(@PathVariable Long id) {
         return paymentManagerService.findPaymentById(id);
     }
 
-    @GetMapping("/findPaymenForCustomer/{idCustomer}")
-    List<PaymentDto> findPaymentForCustomer(@PathVariable long idCustomer) {
+    @GetMapping("/findPaymentForCustomer/{idCustomer}")
+    List<PaymentDto> findPaymentForCustomer(@PathVariable Long idCustomer) {
         return paymentManagerService.findPaymentForCustomer(idCustomer);
     }
 
     @PostMapping("/addPayment/{idCustomer}")
-    PaymentDto addPayment(@RequestBody PaymentDto paymentDto, long idCustomer){
+    PaymentDto addPayment(@RequestBody PaymentDto paymentDto, @PathVariable Long idCustomer){
         return paymentManagerService.addPayment(paymentDto, idCustomer);
     }
 
     @PutMapping("/editPayment/{id}")
-    PaymentDto editPayment(@RequestBody PaymentDto paymentDto, long id){
+    PaymentDto editPayment(@RequestBody PaymentDto paymentDto, @PathVariable Long id){
         return paymentManagerService.editPayment(paymentDto, id);
     }
 
     @DeleteMapping("/deletePayment/{id}")
-    void deletePayment(@PathVariable long id){
+    void deletePayment(@PathVariable Long id){
         paymentManagerService.deletePayment(id);
     }
 

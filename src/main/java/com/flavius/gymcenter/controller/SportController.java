@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SportController {
     private final SportManagerService sportManagerService;
 
@@ -30,17 +30,18 @@ public class SportController {
     }
 
     @PostMapping("/addSportForGym/{idGym}")
-    SportDto addSportForGym(@RequestBody SportDto sportDto, @PathVariable long idGym){
+    SportDto addSportForGym(@RequestBody SportDto sportDto, @PathVariable Long idGym){
         return sportManagerService.addSportFogGym(sportDto, idGym);
     }
     @PostMapping("/addSportForCustomer/{idSport}/{idCustomer}")
-    void addSportForCustomer(@PathVariable long idSport, @PathVariable long idCustomer){
+    void addSportForCustomer(@PathVariable long idSport, @PathVariable Long idCustomer){
         sportManagerService.addSportForCustomer(idSport, idCustomer);
     }
     @PutMapping("/editSport/{id}")
-    SportDto editSport(@RequestBody SportDto sportDto, @PathVariable long id){
+    SportDto editSport(@RequestBody SportDto sportDto, @PathVariable Long id){
         return sportManagerService.editSport(sportDto, id);
     }
+    @CrossOrigin
     @DeleteMapping("/deleteSport/{id}")
     void deleteSport(@PathVariable long id){
         sportManagerService.deleteSport(id);

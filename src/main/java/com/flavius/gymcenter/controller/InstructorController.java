@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class InstructorController {
 
     private final InstructorManagerService instructorManagerService;
@@ -37,12 +37,14 @@ public class InstructorController {
     }
 
     @PostMapping("/addInstructorForGym/{idGym}")
-    InstructorDto addInstructor(@RequestBody InstructorDto instructorDto, @PathVariable long idGym){
+    InstructorDto addInstructor(@RequestBody InstructorDto instructorDto,
+                                @PathVariable long idGym){
         return instructorManagerService.addInstructorForGym(instructorDto, idGym);
     }
 
     @PostMapping("/addInstructorForSport/{idInstructor}/{idSport}")
-    void addInstructorForSport(@PathVariable long idInstructor, @PathVariable long idSport){
+    void addInstructorForSport(@PathVariable long idInstructor,
+                               @PathVariable long idSport){
         instructorManagerService.addInstructorForSport(idInstructor, idSport);
     }
 

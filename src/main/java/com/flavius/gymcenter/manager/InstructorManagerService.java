@@ -1,7 +1,5 @@
 package com.flavius.gymcenter.manager;
-
 import com.flavius.gymcenter.dto.InstructorDto;
-
 import java.util.List;
 
 public interface InstructorManagerService {

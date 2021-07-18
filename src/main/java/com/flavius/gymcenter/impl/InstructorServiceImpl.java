@@ -25,7 +25,7 @@ public class InstructorServiceImpl implements InstructorService {
     @Override
     public Instructor editInstructor(Instructor instructor, Instructor existsInstructor) {
         existsInstructor.setName(instructor.getName());
-        return instructorDao.save(instructor);
+        return instructorDao.save(existsInstructor);
     }
 
 }

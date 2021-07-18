@@ -34,14 +34,14 @@ public class SportManagerServiceImpl implements SportManagerService {
     }
 
     @Override
-    public SportDto addSportFogGym(SportDto sportDto, long idGym) {
+    public SportDto addSportFogGym(SportDto sportDto, Long idGym) {
         Sport sport = orikaBeanMapper.map(sportDto, Sport.class);
         Gym gym = gymDao.findById(idGym).orElse(null);
         return orikaBeanMapper.convertDTO(sportService.addSport(sport, gym), SportDto.class);
     }
 
     @Override
-    public SportDto editSport(SportDto sportDto, long id) {
+    public SportDto editSport(SportDto sportDto, Long id) {
         Sport sport = orikaBeanMapper.map(sportDto, Sport.class);
         Sport existsSport = sportDao.findById(id).orElse(null);
         return orikaBeanMapper.convertDTO(sportService.editSport(sport, existsSport), SportDto.class);
@@ -53,7 +53,7 @@ public class SportManagerServiceImpl implements SportManagerService {
     }
 
     @Override
-    public void addSportForCustomer(long idSport, long idCustomer) {
+    public void addSportForCustomer(Long idSport, Long idCustomer) {
         Customer customer = customerDao.findById(idCustomer).orElse(null);
         Sport existsSport = sportDao.findById(idSport).orElse(null);
         customer.addSport(existsSport);

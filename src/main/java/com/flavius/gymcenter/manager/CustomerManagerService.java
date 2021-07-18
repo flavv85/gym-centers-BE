@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface CustomerManagerService {
     CustomerDto addCustomer(CustomerDto customerDto);
-    CustomerDto editCustomer(CustomerDto customerDto, long id);
-    CustomerDto findCustomerById(long id);
-    void deleteCustomer(long id);
+    CustomerDto editCustomer(CustomerDto customerDto, Long id);
+    CustomerDto findCustomerById(Long id);
+    void deleteCustomer(Long id);
     List<CustomerDto> findAllCustomers();
 }

@@ -23,16 +23,14 @@ public class OrikaBeanMapper extends ConfigurableMapper {
         super(false);
         init();
     }
-
     @Override
     protected void configure(MapperFactory factory) {
         this.factory = factory;
     }
-
     private void registerClassMap(Class a, Class b) {
-        this.factory.classMap(a, b).mapNulls(true).mapNullsInReverse(true).byDefault().register();
+        this.factory.classMap(a, b).mapNulls(true).mapNullsInReverse(true).
+                byDefault().register();
     }
-
     //    Register class map with fields to exclude
     private void registerClassMap(Class a, Class b, String... excludeFields) {
         ClassMapBuilder builder = this.factory.classMap(a, b);
@@ -41,22 +39,19 @@ public class OrikaBeanMapper extends ConfigurableMapper {
         }
         builder.mapNulls(true).mapNullsInReverse(true).byDefault().register();
     }
-
     @Override
-    protected void configureFactoryBuilder(final DefaultMapperFactory.Builder factoryBuilder) {
+    protected void configureFactoryBuilder(final DefaultMapperFactory.
+            Builder factoryBuilder) {
         factoryBuilder.compilerStrategy(new JavassistCompilerStrategy());
         factoryBuilder.unenhanceStrategy(new HibernateUnenhanceStrategy());
     }
-
     //    convert entity => DTO / DTO => entity
-
     public <T, U> T convertDTO(U from, Class<T> toClass){
         if (from == null){
             return null;
         }
         return map(from, toClass);
     }
-
     public <T, U> List<T> convertListDTO(Iterable<U> from, Class<T> toClass) {
         if (from == null) {
             return null;

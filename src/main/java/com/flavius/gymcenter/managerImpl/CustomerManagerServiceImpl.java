@@ -32,19 +32,19 @@ public class CustomerManagerServiceImpl implements CustomerManagerService {
     }
 
     @Override
-    public CustomerDto editCustomer(CustomerDto customerDto, long id) {
+    public CustomerDto editCustomer(CustomerDto customerDto, Long id) {
         Customer customer = orikaBeanMapper.map(customerDto, Customer.class);
         Customer existsCustomer = customerDao.findById(id).orElse(null);
         return orikaBeanMapper.convertDTO(customerService.editCustomer(customer, existsCustomer), CustomerDto.class );
     }
 
     @Override
-    public CustomerDto findCustomerById(long id) {
+    public CustomerDto findCustomerById(Long id) {
         return orikaBeanMapper.convertDTO(customerDao.findById(id).orElse(null), CustomerDto.class);
     }
 
     @Override
-    public void deleteCustomer(long id) {
+    public void deleteCustomer(Long id) {
     Customer existsCustomer = customerDao.findById(id).orElse(null);
     customerDao.delete(existsCustomer);
     }
